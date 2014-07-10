@@ -8,6 +8,9 @@ app = Flask(__name__,
 
 from app import views
 
+# important! needed for login things
+app.secret_key = "vertigo"
+
 # adding admin blueprint
 from app.admin.views import admin
 app.register_blueprint(admin)
