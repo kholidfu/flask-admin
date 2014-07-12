@@ -8,7 +8,7 @@ app = Flask(__name__,
 
 from app import views
 
-# important! needed for login things
+# important! needed for login things >> joss
 app.secret_key = "vertigo"
 
 # adding admin blueprint
