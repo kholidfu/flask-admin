@@ -1,9 +1,23 @@
-from flask import render_template
+from flask import render_template, redirect, request, session, flash, url_for
 from flask import Blueprint
+from functools import wraps
 
 admin = Blueprint('admin', __name__, url_prefix="/admin")
 
-@admin.route("/")
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("username") is not None:
+            return f(*args, **kwargs)
+        else:
+            flash("Please log in first...", "error")
+            next_url = request.url
+            login_url = "%s?next=%s" % (url_for("admin_login"), next_url)
+            return redirect(login_url)
+    return decorated_function
+
+@admin.route("/admin")
+@login_required
 def index():
 	return render_template("admin/index.html")
 

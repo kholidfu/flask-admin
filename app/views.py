@@ -1,6 +1,6 @@
 # author: @sopier
 
-from flask import render_template, request, redirect, send_from_directory
+from flask import render_template, request, redirect, send_from_directory, session, flash, url_for
 from flask import make_response # untuk sitemap
 from app import app
 # untuk find_one based on data id => db.freewaredata.find_one({'_id': ObjectId(file_id)})
@@ -8,7 +8,8 @@ from app import app
 from werkzeug.contrib.atom import AtomFeed
 from bson.objectid import ObjectId 
 from filters import slugify, splitter, onlychars, get_first_part, get_last_part, formattime, cleanurl
-
+from functools import wraps
+from forms import AdminLoginForm, UserLoginForm, UserRegisterForm
 import datetime
 
 @app.template_filter()
@@ -73,9 +74,63 @@ def robots():
     # point to robots.txt files
     return send_from_directory(app.static_folder, request.path[1:])
 
+def admin_login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("admin") is not None:
+            return f(*args, **kwargs)
+        else:
+            flash("Please log in first...", "error")
+            next_url = request.url
+            login_url = "%s?next=%s" % (url_for("admin_login"), next_url)
+            return redirect(login_url)
+    return decorated_function
+
+def user_login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("username") is not None:
+            return f(*args, **kwargs)
+        else:
+            flash("Please log in first...", "error")
+            next_url = request.url
+            login_url = "%s?next=%s" % (url_for("users_login"), next_url)
+            return redirect(login_url)
+    return decorated_function
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/admin")
+@admin_login_required
+def admin():
+    return render_template("admin/index.html")
+
+@app.route("/admin/login", methods=["GET", "POST"])
+def admin_login():
+    form = AdminLoginForm()
+
+    if "admin" in session:
+        return redirect(url_for("admin"))
+
+    if request.method == "POST":
+        if form.validate() == False:
+            flash("invalid credentials")
+            return render_template("admin/login.html", form=form)
+        else:
+            session["admin"] = form.email.data
+            flash("Anda sudah berhasil masuk, selamat!", category="info")
+            return redirect(request.args.get("next"))
+    elif request.method == "GET":
+        return render_template("/admin/login.html", form=form)
+
+@app.route("/admin/logout")
+def admin_logout():
+    if "admin" not in session:
+        return redirect(url_for("admin_login"))
+    session.pop("admin", None)
+    return redirect(url_for("index"))
 
 @app.route("/sitemap.xml")
 def sitemap():
