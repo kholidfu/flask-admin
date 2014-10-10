@@ -129,7 +129,7 @@ def admin_login():
         else:
             session["admin"] = form.email.data
             flash("Anda sudah berhasil masuk, selamat!", category="info")
-            return redirect(request.args.get("next"))
+            return redirect(request.args.get("next") or url_for("admin"))
     elif request.method == "GET":
         return render_template("/admin/login.html", form=form)
 
@@ -150,17 +150,17 @@ def users_login():
 
     if request.method == "POST":
         # if username not exist in dbase, failed
-        if not db.user.find_one({"username": form.username.data}):
+        if not dbentity.users.find_one({"username": form.username.data}):
             error = "Username is not registered."
             return render_template("/users/login.html", form=form, error=error)
         # if password mismatch with dbase, failed
-        elif db.user.find_one({"username": form.username.data})["password"] != form.password.data:
+        elif dbentity.users.find_one({"username": form.username.data})["password"] != form.password.data:
             error = "Password mismatch!"
             return render_template("/users/login.html", form=form, error=error)
         # true semua
         else:
             session["username"] = form.username.data
-            return redirect(request.args.get("next") or url_for("index"))
+            return redirect(request.args.get("next") or url_for("users"))
     return render_template("/users/login.html", form=form)
 
 @app.route("/users/<username>/profile", methods=["GET", "POST"])
