@@ -1,0 +1,218 @@
+{% extends "users/base.html" %}
+{% block content %}
+        <div id="page-wrapper" style="margin: 0px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Profile</h1>
+                    <div class="row">
+                            <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Account Info
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#home" data-toggle="tab">Account</a>
+                                        </li>
+                                        <li class=""><a href="#websites" data-toggle="tab">Websites</a>
+                                        </li>
+                                        <li class=""><a href="#about" data-toggle="tab">About</a>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active in" id="home">
+                                            <h4>&nbsp;</h4>
+        				                    <div class="panel-body">
+        				                    <!-- show messages error -->
+        				                    {% with messages = get_flashed_messages() %}
+        				                    {% if messages %}
+        				                    <div class="alert alert-info alert-dismissable">
+        				                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        				                        {%- for message in messages %}
+        				                        {{ message }} or <a class="alert-link" href="/users/register">Register</a>.
+        				                        {% endfor %}
+        				                    </div>
+        				                    {% endif %}
+        				                    {% endwith %}
+        				                    {% if error %}
+        				                    <div class="alert alert-danger alert-dismissable">
+        				                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        				                        {{ error }} <a class="alert-link" href="#">Back to Index</a>.
+        				                    </div>
+        				                    {% endif %}
+        				                    <!-- end of error messages -->
+        				                        <form role="form">
+
+        				                            <fieldset>
+        				                                <div class="form-group">
+        				                                	<label>Username</label>
+        				                                    <input class="form-control" placeholder="" name="username" id="disabledInput" type="text" value="{{ data['username'] }}" autofocus disabled>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>E-mail</label>
+        				                                    <input class="form-control" placeholder="" name="email" id="email" type="email" value="{{ data['email'] }}" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>New Password</label>
+        				                                    <input class="form-control" placeholder="" name="password" id="password" type="password" value="{{ data['password'] }}">
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Confirm New Password</label>
+        				                                    <input class="form-control" placeholder="" name="password" id="password" type="password" value="{{ data['password'] }}">
+        				                                </div>
+        				                                <div class="checkbox">
+        				                                    <label>
+        				                                        <input name="remember" type="checkbox" value="Remember Me">Newsletter Subscription
+        				                                    </label>
+        				                                </div>
+        				                                <!-- Change this to a button or input when using this as a form -->
+        												<input type="submit" class="btn btn-lg btn-success btn-block" value="Save">
+        				                            </fieldset>
+        				                        </form>
+        			                    	</div>
+
+                                        </div>
+
+                                        <div class="tab-pane fade" id="websites">
+                                            <h4>&nbsp;</h4>
+        				                    <div class="panel-body">
+        				                    <!-- show messages error -->
+        				                    {% with messages = get_flashed_messages() %}
+        				                    {% if messages %}
+        				                    <div class="alert alert-info alert-dismissable">
+        				                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        				                        {%- for message in messages %}
+        				                        {{ message }} or <a class="alert-link" href="/users/register">Register</a>.
+        				                        {% endfor %}
+        				                    </div>
+        				                    {% endif %}
+        				                    {% endwith %}
+        				                    {% if error %}
+        				                    <div class="alert alert-danger alert-dismissable">
+        				                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        				                        {{ error }} <a class="alert-link" href="#">Back to Index</a>.
+        				                    </div>
+        				                    {% endif %}
+        				                    <!-- end of error messages -->
+        				                        <form role="form">
+
+        				                            <fieldset>
+        				                                <div class="form-group">
+        				                                	<label>Website</label>
+        				                                    <input class="form-control" placeholder="http://" name="website" id="website" type="text" value="" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Facebook Profile</label>
+        				                                    <input class="form-control" placeholder="http://www.facebook.com/" name="facebook" id="facebook" type="text" value="http://www.facebook.com/" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Twitter</label>
+        				                                    <input class="form-control" placeholder="https://www.twitter.com/" name="username" id="website" type="text" value="https://www.twitter.com/" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Google+</label>
+        				                                    <input class="form-control" placeholder="https://plus.google.com/" name="username" id="website" type="text" value="https://plus.google.com/" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Pinterest</label>
+        				                                    <input class="form-control" placeholder="http://pinterest.com/" name="username" id="website" type="text" value="http://pinterest.com/" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>DevianArt</label>
+        				                                    <input class="form-control" placeholder="http://devianart.com/" name="username" id="website" type="text" value="http://devianart.com/" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Youtube</label>
+        				                                    <input class="form-control" placeholder="https://www.youtube.com/user/" name="username" id="website" type="text" value="https://www.youtube.com/user/" autofocus>
+        				                                </div>
+        				                                <div class="form-group">
+        				                                	<label>Flickr</label>
+        				                                    <input class="form-control" placeholder="https://www.flickr.com/photos/" name="username" id="website" type="text" value="https://www.flickr.com/photos/" autofocus>
+        				                                </div>
+        				                                <!-- Change this to a button or input when using this as a form -->
+        												<input type="submit" class="btn btn-lg btn-success btn-block" value="Save">
+        				                            </fieldset>
+        				                        </form>
+        			                    </div><!-- .panel-body -->
+                                        </div><!-- #websites -->
+
+                                        <div class="tab-pane fade" id="about">
+                                            <h4>&nbsp;</h4>
+                                  			<div class="panel-body">
+        				                    <!-- show messages error -->
+        				                    {% with messages = get_flashed_messages() %}
+        				                    {% if messages %}
+        				                    <div class="alert alert-info alert-dismissable">
+        				                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        				                        {%- for message in messages %}
+        				                        {{ message }} or <a class="alert-link" href="/users/register">Register</a>.
+        				                        {% endfor %}
+        				                    </div>
+        				                    {% endif %}
+        				                    {% endwith %}
+        				                    {% if error %}
+        				                    <div class="alert alert-danger alert-dismissable">
+        				                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        				                        {{ error }} <a class="alert-link" href="#">Back to Index</a>.
+        				                    </div>
+        				                    {% endif %}
+        				                    <!-- end of error messages -->
+        				                        <form role="form" method="post">
+
+        				                            <fieldset>
+        				                                <div class="form-group">
+        				                                	<label>About me</label>
+        													<textarea class="form-control" rows="8">{{ data['about'] }}</textarea>
+        				                                </div>
+        				                                <!-- Change this to a button or input when using this as a form -->
+        												<input id="save-about" type="submit" class="btn btn-lg btn-success btn-block" value="Save">
+        				                            </fieldset>
+        				                        </form>
+        			                    	</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+{% endblock %}
+
+{% block js %}
+<script>
+// remove left nav
+$(document).ready(function() {
+    $(".navbar-default.navbar-static-side").hide();
+})
+
+// save about me with ajax
+$(document).ready(function() {
+    $("#save-about").click(function() {
+        var about = $("textarea").val();
+        $.ajax({
+            url: "/users/save-about",
+            type: "POST",
+            data: {"about": about},
+            success: function(response) {
+                console.log(response);
+            }
+        })
+        // console.log("sukses")
+        return false;
+    });
+})
+
+</script>
+{% endblock %}

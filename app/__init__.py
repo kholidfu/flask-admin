@@ -1,10 +1,25 @@
 from flask import Flask
 from app.admin import admin
+from flask.ext.mail import Mail
+
 
 app = Flask(__name__, 
         static_folder="static", # match with your static folder
         static_url_path="/static" # you can change this to anything other than static, its your URL
       )
+
+# mail config start
+
+mail = Mail(app)
+
+app.config.update(
+                    MAIL_SERVER='smtp.gmail.com',
+                    MAIL_PORT=465,
+                    MAIL_USE_SSL=True,
+                    MAIL_USERNAME = 'email@gmail.com',
+                    MAIL_PASSWORD = 'yourcurrentpasswordis'
+                  )
+# mail config end
 
 from app import views
 
