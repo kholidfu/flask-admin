@@ -3,7 +3,7 @@ from app.admin import admin
 from flask.ext.mail import Mail
 
 
-app = Flask(__name__, 
+app = Flask(__name__,
         static_folder="static", # match with your static folder
         static_url_path="/static" # you can change this to anything other than static, its your URL
       )
@@ -23,6 +23,11 @@ app.config.update(
 
 from app import views
 
+
+# global domain name config
+# calling from jinja => config["domain_name"]
+app.config["domain_name"] = ""
+
 # important! needed for login things >> joss
 app.secret_key = "vertigo"
 
@@ -30,7 +35,7 @@ app.secret_key = "vertigo"
 from app.admin.views import admin
 app.register_blueprint(admin)
 
-# logging tools 
+# logging tools
 # author: https://gist.github.com/mitsuhiko/5659670
 # monitor uwsgi access / error :: output di nohup.out
 
