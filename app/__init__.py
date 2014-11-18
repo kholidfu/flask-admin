@@ -27,6 +27,7 @@ from app import views
 # global domain name config
 # calling from jinja => {{ config["domain_name"] }}
 app.config["domain_name"] = ""
+app.config["domain_url"] = ""
 
 # important! needed for login things >> joss
 app.secret_key = "vertigo"
