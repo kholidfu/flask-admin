@@ -28,53 +28,19 @@ def slug(s):
     """
     return slugify(s)
 
-@app.template_filter()
-def split(s):
-    """ 
-    split string s with delimiter '-' 
-    return list object
-    usage: {{ string|split }}
+@app.template_filter("humanize")
+def jinja2_filter_humanize(date):
     """
-    return splitter(s, '-')
+    convert datetime object into human readable
+    usage humanize(dateobject) or if in template
+    {{ dateobject|humanize }}
+    """
+    import humanize
+    secs = datetime.datetime.now() - date
+    secs = int(secs.total_seconds())
+    date = humanize.naturaltime(datetime.datetime.now() - datetime.timedelta(seconds=secs))  # 10 seconds ago
+    return date
 
-@app.template_filter()
-def getlast(text, delim=' '):
-    """
-    get last word from string with delimiter ' '
-    usage: {{ string|getlast }}
-    """
-    return get_last_part(text, delim)
-
-@app.template_filter()
-def getfirst(text, delim=' '):
-    """
-    get first word from string with delimiter '-'
-    usage: {{ string|getfirst }}
-    """
-    return get_first_part(text, delim)
-
-@app.template_filter()
-def getchars(text):
-    """
-    get characters and numbers only from string
-    usage: {{ string|getchars }}
-    """
-    return onlychars(text)
-
-@app.template_filter()
-def sectomins(seconds):
-    """
-    convert seconds to hh:mm:ss
-    usage: {{ seconds|sectomins }}
-    """
-    return formattime(seconds)
-
-@app.template_filter()
-def urlcleaner(text):
-    """
-    clean url from string
-    """
-    return cleanurl(text)
 
 # handle robots.txt file
 @app.route("/robots.txt")
