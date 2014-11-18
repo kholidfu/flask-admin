@@ -25,7 +25,7 @@ from app import views
 
 
 # global domain name config
-# calling from jinja => config["domain_name"]
+# calling from jinja => {{ config["domain_name"] }}
 app.config["domain_name"] = ""
 
 # important! needed for login things >> joss
