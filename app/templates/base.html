@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{% block title %}{% endblock %} | example.com</title>
+    <title>{% block title %}{% endblock %}{{ config['DOMAIN_NAME'] }} | {{ config['DOMAIN_URL'] }}</title>
     {% block metadesc %}
     {% endblock %}
     {{ link_tag('bootstrap') }}
