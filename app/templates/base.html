@@ -1,49 +1,143 @@
-{% from "util.html" import link_tag, script_tag %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>{% block title %}{% endblock %}{{ config['DOMAIN_NAME'] }} | {{ config['DOMAIN_URL'] }}</title>
-    {% block metadesc %}
-    {% endblock %}
-    {{ link_tag('bootstrap') }}
-    {{ link_tag('style') }}
-    {% block css %}
-    {% endblock %}
-    {{ script_tag('jquery-1.10.2') }}
-    {{ script_tag('bootstrap') }}
-    {{ script_tag('bootstrap.min') }}
-    {% block js %}
-    {% endblock %}
-  </head>
-  <body>
-    <div class="container">
-      <div class="container-narrow">
-	<div class="masthead">
-	  <ul class="nav nav-pills pull-right">
-	    <li class="active">
-	      <a href="/">Home</a>
-	    </li>
-	    <li>
-	      <a href="#">About</a>
-	    </li>
-	    <li>
-	      <a href="#">Contact</a>
-	    </li>
-	  </ul>
-	  <h3 class="muted">
-	    Project name
-	  </h3>
-	</div>
-      </div>
-      <hr>
-      <div class="container-narrow">
-	{% block content %}{% endblock %}
-      </div>
-      <div class="footer container-narrow">
-	<p>
-	  © Company 2013
-	</p>
-      </div>
+<head>
+<meta charset="utf-8">
+<title>Farming Framework FFv1.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<!-- Le styles -->
+<link href='http://fonts.googleapis.com/css?family=Allura|Average+Sans' rel='stylesheet' type='text/css'>
+<link href="/static/css/bootstrap.2.css" rel="stylesheet">
+
+<link href="/static/css/default.css" rel="stylesheet">
+
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!-- Fav and touch icons -->
+<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+
+<div class="container-fluid">
+
+    <a id="top"></a>
+
+    <div class="row-fluid">
+
+    	<div class="span8 logo">
+	    	<a href="#" title="Your logo text">Farming Framework</a>
+    	</div>
+
+    	<div class="span3 offset1 telefon">
+	    	<p>tel: 0123-456789</p>
+	    </div>
+
+    	<div class="clearfix"></div>
+
     </div>
-  </body>
+
+	<div class="row-fluid navMargin">
+		<div class="span12">
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+				    <ul class="nav">
+					    <li class="active"><a href="#">Home</a></li>
+					    <li class="divider-vertical"></li>
+					    <li class="dropdown">
+					    	<a href="#" id="drop1" role="button" class="dropdown-toggle" data-toggle="dropdown">
+							About us <b class="caret"></b></a>
+		                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+		                      	<li role="menuitem"><a tabindex="-1" href="#">
+								Team</a></li>
+		                      	<li role="menuitem"><a tabindex="-1" href="#">Gallery</a></li>
+		                      </ul>
+					    </li>
+					    <li class="divider-vertical"></li>
+					    <li><a href="#">Services</a></li>
+					     <li class="divider-vertical"></li>
+					    <li class="dropdown">
+							<a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">
+							Taxes <b class="caret"></b></a>
+		                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+		                        <li role="menuitem"><a tabindex="-1" href="#">Suppage</a></li>
+		                        <li role="menuitem" class="divider"></li>
+		                        <li role="menuitem"><a tabindex="-1" href="#">Subpage</a></li>
+		                        <li role="menuitem"><a tabindex="-1" href="#">Subpage</a></li>
+		                      </ul>
+					   </li>
+					   <li class="divider-vertical"></li>
+					   <li><a href="#">Contact us</a></li>
+				   </ul>
+			   </div>
+			</div>
+		</div>
+	</div>
+
+    {% block content %}
+    {% endblock %}
+    
+    <!--start row footer-->
+	<div class="row-fluid nomargin">
+
+		<hr>
+
+		<footer>
+			<p><a href="#">Bottom menu</a> - <a href="#">Bottom menu</a></p>
+			<p>&copy; 2014 Ultimate User Manual User Guide. All rights reserved.</p>
+		</footer>
+
+	</div><!--end row footer-->
+
+</div><!--/container-->
+
+        <p id="back-top-general">
+            <a href="#top"><span></span></a>
+        </p>
+           <!-- Le javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="/static/js/jquery-1.10.2.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+            // hide #back-top first
+            $("#back-top").hide();
+            $("#back-top-general").hide();
+            // fade in #back-top
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('#back-top').fadeIn();
+                        $('#back-top-general').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                        $('#back-top-general').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-top a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 800);
+                    return false;
+                });
+                // scroll body to 0px on click
+                $('#back-top-general a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 800);
+                    return false;
+                    });
+                });
+            }); 
+        </script>
+        {% block js %}
+        {% endblock %}
+    </body>
 </html>
