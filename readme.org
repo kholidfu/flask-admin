@@ -1,0 +1,20 @@
+#+TITLE: Flask with Pypy, Twisted and Tornado
+#+AUTHOR: Kholid Fuadi
+#+DATE: <2015-02-12 Kam>
+#+STARTUP: indent
+
+
+* Pypy
+** How to install in virtualenv
+First, download and extract pypy-2.x tarball, from
+
+[[http://pypy.org/download.html]]
+
+I'm using x86-64 binary. Then, run these code:
+
+#+BEGIN_SRC sh
+  virtualenv -p pypy-2.5/bin/pypy dirname
+  . bin/activate
+  pip install -r requirements.txt
+  ./run.py
+#+END_SRC
