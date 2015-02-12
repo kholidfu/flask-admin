@@ -1,5 +1,3 @@
-# author: @sopier
-
 from flask import render_template, request, redirect, send_from_directory, session, flash, url_for
 from flask import make_response # untuk sitemap
 from app import app
@@ -76,35 +74,35 @@ def user_login_required(f):
 def index():
     return render_template("index.html")
 
-@app.route("/admin")
-@admin_login_required
-def admin():
-    return render_template("admin/index.html")
+# @app.route("/admin")
+# @admin_login_required
+# def admin():
+#     return render_template("admin/index.html")
 
-@app.route("/admin/login", methods=["GET", "POST"])
-def admin_login():
-    form = AdminLoginForm()
+# @app.route("/admin/login", methods=["GET", "POST"])
+# def admin_login():
+#     form = AdminLoginForm()
 
-    if "admin" in session:
-        return redirect(url_for("admin"))
+#     # if "admin" in session:
+#     #     return redirect(url_for("admin"))
 
-    if request.method == "POST":
-        if form.validate() == False:
-            flash("invalid credentials")
-            return render_template("admin/login.html", form=form)
-        else:
-            session["admin"] = form.email.data
-            flash("Anda sudah berhasil masuk, selamat!", category="info")
-            return redirect(request.args.get("next") or url_for("admin"))
-    elif request.method == "GET":
-        return render_template("/admin/login.html", form=form)
+#     if request.method == "POST":
+#         if form.validate() == False:
+#             flash("invalid credentials")
+#             return render_template("admin/login.html", form=form)
+#         else:
+#             session["admin"] = form.email.data
+#             flash("Anda sudah berhasil masuk, selamat!", category="info")
+#             return redirect(request.args.get("next") or url_for("admin"))
+#     elif request.method == "GET":
+#         return render_template("/admin/login.html", form=form)
 
-@app.route("/admin/logout")
-def admin_logout():
-    if "admin" not in session:
-        return redirect(url_for("admin_login"))
-    session.pop("admin", None)
-    return redirect(url_for("index"))
+# @app.route("/admin/logout")
+# def admin_logout():
+#     if "admin" not in session:
+#         return redirect(url_for("admin_login"))
+#     session.pop("admin", None)
+#     return redirect(url_for("index"))
 
 @app.route("/users/login", methods=["GET", "POST"])
 def users_login():
