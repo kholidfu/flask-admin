@@ -1,7 +1,11 @@
 *~
 *.pyc
 bin/
-include/
+include*
 lib/
 local/
-.idea/
+*.tar.bz2
+lib_pypy/
+lib-python/
+site-packages/
+pypy*/
