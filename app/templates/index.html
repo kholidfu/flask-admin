@@ -1,57 +1,23 @@
-    {% extends "base.html" %}
-
-    {% block content %}
-	<div class="row-fluid">
-		<div class="row-fluid">
-
-			<div class="hero-unit">
-	    		<div class="span5 banner"></div>
-
-				<div class="span7">
-					<h1>{{ data[0]['title'] }}</h1>
-						<p>{{ data[0]['description'] }}</p>
-		           		<p class="noLink"><a class="btn btn-primary btn-large">
-						Read more »</a></p>
-				</div>
-
-				<div class="clearfix"></div>
-
-			</div>
-		</div>
+{% extends "base.html" %}
+{% block title %}Index {% endblock %}
+{% block metadesc %}
+<meta name="description" content="index">
+{% endblock %}
+{% block content %}
+  <div class="jumbotron">
+    <h1>Flask Jump Start</h1>
+    <p class="lead">
+      The quick and right way to develop web apps in seconds!
+    </p>
+    <a class="btn btn-large btn-success" href="#">Sign up today</a>
+  </div>
+  <hr>
+  <div class="marketing row-fluid">
+    <div class="span12">
+      <h4>Top 100 Billboard Song</h4>
+      <p>Lyrics</p>
     </div>
-    <!--end row-->
-
-	<!--start row-->
-    <div class="row-fluid">
-		<div class="hero-unit smallerTopPadding">
-	        <h3>Sponsored Ads</h3>
-            <p style="padding-bottom: 0px;"><a href="#">Link Download #1</a></p>
-            <p style="padding-bottom: 0px;"><a href="#">Link Download #2</a></p>
-            <p style="padding-bottom: 0px;"><a href="#">Link Download #3</a></p>
-		</div>
-    </div>
-    <!--end row-->
-
-	<!--start row-->
-	<div class="row-fluid">
-		<div class="span8">
-			<div class="hero-unit smallerTopPadding">
-                {% for d in data[1:] %}
-	            <h3>{{ d['title'] }}</h3>
-	            <p>{{ d['description'] }}</p>
-                {% endfor %}
-			</div>
-    	</div><!--/span-->
-
-
-		<div class="span4">
-          	<div class="hero-unit smallerTopPadding">
-           		<h3>Iklan Sidebar</h3>
-           		<p>Donec id elit non mi porta gravida at eget metus. Fusce
-				dapibus, tellus ac cursus commodo, tortor mauris condimentum
-				nibh, ut fermentum..  </p>
-			</div>
-		</div><!--/span-->
-	</div>
-	<!-- end row-->
-    {% endblock %}
+  </div>
+  <hr>
+<!-- /container -->
+{% endblock %}
