@@ -33,8 +33,12 @@ app.config["DOMAIN_URL"] = "example.com"
 app.secret_key = "vertigo"
 
 # adding admin blueprint
-from app.admin.views import admin
+from app.admin.admin_views import admin
 app.register_blueprint(admin)
+
+# adding users blueprint
+from app.users.users_views import users
+app.register_blueprint(users)
 
 # logging tools
 # author: https://gist.github.com/mitsuhiko/5659670
