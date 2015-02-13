@@ -1,11 +1,10 @@
-from flask import render_template, request, redirect, send_from_directory, session, flash, url_for
-from flask import make_response # untuk sitemap
+from flask import render_template, request, redirect
+from flask import send_from_directory, session, flash, url_for
+from flask import make_response  # sitemap
 from app import app
-# untuk find_one based on data id => db.freewaredata.find_one({'_id': ObjectId(file_id)})
-# atom feed
-from werkzeug.contrib.atom import AtomFeed
+from werkzeug.contrib.atom import AtomFeed  # feed
 from bson.objectid import ObjectId 
-from filters import slugify, splitter, onlychars, get_first_part, get_last_part, formattime, cleanurl
+from filters import slugify
 from functools import wraps
 from forms import AdminLoginForm, UserLoginForm, UserRegisterForm
 import datetime
@@ -15,7 +14,7 @@ from flask.ext.mail import Message, Mail
 
 # setup database mongo
 c = pymongo.Connection()
-dbentity = c["entities"]  # nanti ada dbentity.user, dbentity.admin, dll
+dbentity = c["entities"]  # db for dbentity.user, dbentity.admin, etc.
 
 
 @app.template_filter()

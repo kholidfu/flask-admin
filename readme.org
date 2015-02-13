@@ -1,20 +1,21 @@
-#+TITLE: Flask with Pypy, Twisted and Tornado
+#+TITLE: Flask with Admin
 #+AUTHOR: Kholid Fuadi
 #+DATE: <2015-02-12 Kam>
 #+STARTUP: indent
 
 
-* Pypy
-** How to install in virtualenv
-First, download and extract pypy-2.x tarball, from
+* Description
+This is [almost] production ready apps.
+* Features
+1. Admin with bootstrap template functionality.
+2. User register/login/logout functionality.
+3. Those 2 is written as flask blueprint, hope it modular enough for
+   you to take those two app and attached to your own app.
+* 3rd party modules
+1. pymongo
+2. tornado
+3. twisted
+4. flaskmail
+5. flask_wtf
+6. unidecode
 
-[[http://pypy.org/download.html]]
-
-I'm using x86-64 binary. Then, run these code:
-
-#+BEGIN_SRC sh
-  virtualenv -p pypy-2.5/bin/pypy dirname
-  . bin/activate
-  pip install -r requirements.txt
-  ./run.py
-#+END_SRC
