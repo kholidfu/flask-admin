@@ -213,15 +213,16 @@ def index():
 #             return redirect(request.args.get("next") or url_for("index"))
 #     return render_template("/users/register.html", form=form)
 
-@app.route("/sitemap.xml")
+@app.route("/sitemap")
 def sitemap():
     # data = db.freewaredata.find()
-    # sitemap_xml = render_template("sitemap.xml", data=data)
-    # response = make_response(sitemap_xml)
-    # response.headers['Content-Type'] = 'application/xml'
+    # dummy data
+    data = {"title": "the title"}
+    sitemap_xml = render_template("sitemap.xml", data=data)
+    response = make_response(sitemap_xml)
+    response.headers['Content-Type'] = 'application/xml'
+    return response
 
-    # return response
-    pass
 
 @app.route('/recent.atom')
 def recent_feed():
