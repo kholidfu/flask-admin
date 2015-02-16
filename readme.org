@@ -19,8 +19,16 @@ The steps:
   virtualenv -p /usr/bin/pypy .
   . bin/activate
   pip install -r requirements.txt
-  ./run.py
+  ./run.py --help
 #+END_SRC
+
+You have 3 python servers options to run:
+#+BEGIN_SRC sh
+  ./run.py --builtin
+  ./run.py --twisted
+  ./run.py --tornado
+#+END_SRC
+
 * 3rd party modules
 1. pymongo
 2. tornado
