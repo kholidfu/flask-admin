@@ -11,6 +11,16 @@ This is [almost] production ready apps.
 2. User register/login/logout functionality.
 3. Those 2 is written as flask blueprint, hope it modular enough for
    you to take those two app and attached to your own app.
+* Install and Run
+The steps:
+#+BEGIN_SRC sh
+  git clone https://github.com/sopier/flask-admin
+  cd flask-admin
+  virtualenv .
+  . bin/activate
+  pip install -r requirements.txt
+  ./run.py
+#+END_SRC
 * 3rd party modules
 1. pymongo
 2. tornado
