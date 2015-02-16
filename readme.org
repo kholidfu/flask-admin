@@ -16,7 +16,7 @@ The steps:
 #+BEGIN_SRC sh
   git clone https://github.com/sopier/flask-admin
   cd flask-admin
-  virtualenv .
+  virtualenv -p /usr/bin/pypy .
   . bin/activate
   pip install -r requirements.txt
   ./run.py
