@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml-stylesheet type="text/xsl" href="/static/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
 {% for d in data %}
 <url>
-    <loc>http://www.blankons.com/{{ d.title|getchars|slug }}/{{ d._id }}</loc>
+    <loc>http://www.example.com/your/path</loc>
+    <image:image>
+        <image:loc>
+            {{ config['WEB_URL']}}/assets/large/{{ d.fpath }}
+        </image:loc>
+    </image:image>
+    <lastmod>{{ d['added'] }}</lastmod>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
 </url>
 {% endfor %}                                                                
 </urlset>
