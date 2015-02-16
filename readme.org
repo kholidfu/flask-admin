@@ -4,8 +4,19 @@
 #+STARTUP: indent
 
 
-* Description
-This is [almost] production ready apps.
+This is [almost] production ready apps. It contains Flask and admin
+dashboard, using bootstrap template. You can browse to
+http://127.0.0.1:5000/admin and the default login is:
+
+username: kinanti@gmail.com
+password: delapan
+
+However, you can change it in:
+
+/flask-admin/app/forms.py
+
+find the line contains: kinanti and alter them!
+
 * Features
 1. Admin with bootstrap template functionality.
 2. User register/login/logout functionality.
