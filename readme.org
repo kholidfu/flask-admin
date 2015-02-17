@@ -8,14 +8,16 @@ This is [almost] production ready apps. It contains Flask and admin
 dashboard, using bootstrap template. You can browse to
 http://127.0.0.1:5000/admin and the default login is:
 
-username: kinanti@gmail.com
-password: delapan
+#+BEGIN_SRC text
+  username: admin@admin.com
+  password: password
+#+END_SRC
 
 However, you can change it in:
 
-/flask-admin/app/forms.py
-
-find the line contains: kinanti and alter them!
+#+BEGIN_SRC text
+  /flask-admin/app/forms.py
+#+END_SRC
 
 * Features
 1. Admin with bootstrap template functionality.
