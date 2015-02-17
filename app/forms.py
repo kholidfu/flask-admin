@@ -2,6 +2,11 @@ from flask_wtf import Form
 from wtforms import TextField, SubmitField, validators, PasswordField
 
 
+# set you username and password for admin here:
+username = "admin@admin.com"
+password = "password"
+
+
 class AdminLoginForm(Form):
     email = TextField("Email", [validators.Required("Please enter your Email.")])
     password = PasswordField("Password", [validators.Required("Please enter your password.")])
@@ -14,11 +19,12 @@ class AdminLoginForm(Form):
         if not Form.validate(self):
             return False
 
-        if "kinanti@gmail.com" == self.email.data and "delapan" == self.password.data:
+        if username == self.email.data and password == self.password.data:
             return True
         else:
             self.email.errors.append("Invalid username or password")
             return False
+
 
 class UserLoginForm(Form):
     username = TextField("Email", [validators.Required("Please enter your Email.")])
