@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import optparse
+import argparse
 from app import app
 
 """
@@ -14,11 +14,13 @@ adapted from here:
 http://blog.yeradis.com/2012/11/standalone-flask-wsgi-running-under.html
 """
 
-def builtin(option, opt_str, value, parser):
+
+def builtin():
     print "Built in development server..."
     app.run(debug=True)
 
-def tornado(option, opt_str, value, parser):
+
+def tornado():
     print 'Tornado on port 5000...'
     from tornado.wsgi import WSGIContainer
     from tornado.httpserver import HTTPServer
@@ -29,7 +31,7 @@ def tornado(option, opt_str, value, parser):
     IOLoop.instance().start()
 
 
-def twisted(option, opt_str, value, parser):
+def twisted():
     print 'Twisted on port 5000...'
     from twisted.internet import reactor
     from twisted.web.server import Site
@@ -43,20 +45,20 @@ def twisted(option, opt_str, value, parser):
 
 
 def main():
-    parser = optparse.OptionParser(usage="%prog [options] or type %prog -h (--help)")
-    parser.add_option('--builtin',
-                      help="Builtin Flask dev server", 
-                      action="callback",
-                      callback=builtin)
-    parser.add_option('--tornado',
-                      help="Tornado dev server",
-                      action="callback",
-                      callback=tornado)
-    parser.add_option('--twisted',
-                      help="Twisted dev server",
-                      action="callback",
-                      callback=twisted)
-    (options, args) = parser.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s",
+                        "--server",
+                        nargs="+",
+                        help="choose between builtin/tornado/twisted as argument",)
+    args = parser.parse_args()
+    
+    if not args.server:  # if no arguments
+        builtin()
+    elif "tornado" in args.server:
+        tornado()
+    else:
+        twisted()
+
     parser.print_help()
 
 
