@@ -35,7 +35,8 @@ The steps:
   ./run.py --help
 #+END_SRC
 
-You have 3 python servers options to run:
+You have 3 python servers options to run, builtin, tornado and
+twisted. If no argument supplied, the default will be builtin.
 #+BEGIN_SRC sh
   ./run.py
   ./run.py -s twisted
