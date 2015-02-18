@@ -37,9 +37,9 @@ The steps:
 
 You have 3 python servers options to run:
 #+BEGIN_SRC sh
-  ./run.py --builtin
-  ./run.py --twisted
-  ./run.py --tornado
+  ./run.py
+  ./run.py -s twisted
+  ./run.py -s tornado
 #+END_SRC
 
 * 3rd party modules
