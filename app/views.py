@@ -8,6 +8,8 @@ from filters import slugify
 from functools import wraps
 from forms import AdminLoginForm, UserLoginForm, UserRegisterForm
 import datetime
+import humanize
+import pytz
 import pymongo
 from flask.ext.mail import Message, Mail
 
@@ -25,6 +27,13 @@ def slug(s):
     """
     return slugify(s)
 
+
+@app.template_filter("lastmod")
+def jinja2_filter_lastmod(dt):
+    """ make the date xml comply """
+    return dt.replace(tzinfo=pytz.utc).isoformat()
+
+
 @app.template_filter("humanize")
 def jinja2_filter_humanize(date):
     """
@@ -32,7 +41,6 @@ def jinja2_filter_humanize(date):
     usage humanize(dateobject) or if in template
     {{ dateobject|humanize }}
     """
-    import humanize
     secs = datetime.datetime.now() - date
     secs = int(secs.total_seconds())
     date = humanize.naturaltime(datetime.datetime.now() - datetime.timedelta(seconds=secs))  # 10 seconds ago
@@ -217,7 +225,7 @@ def index():
 def sitemap():
     # data = db.freewaredata.find()
     # dummy data
-    data = {"title": "the title"}
+    data = [{"title": "the title", "added": datetime.datetime.now()}]
     sitemap_xml = render_template("sitemap.xml", data=data)
     response = make_response(sitemap_xml)
     response.headers['Content-Type'] = 'application/xml'

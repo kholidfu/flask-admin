@@ -10,7 +10,7 @@
             {{ config['WEB_URL']}}/assets/large/{{ d.fpath }}
         </image:loc>
     </image:image>
-    <lastmod>{{ d['added'] }}</lastmod>
+    <lastmod>{{ d['added']|lastmod }}</lastmod>
     <changefreq>always</changefreq>
     <priority>1.0</priority>
 </url>
