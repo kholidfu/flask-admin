@@ -4,9 +4,9 @@ from app import app
 
 """
 There are 3 python web server here:
-- werkzeug => ./run.py --builtin
-- twisted  => ./run.py --twisted
-- tornado  => ./run.py --tornado
+- werkzeug (builtin)  => ./run.py
+- twisted             => ./run.py -s twisted
+- tornado             => ./run.py -s tornado
 
 help: ./run.py -h
 
