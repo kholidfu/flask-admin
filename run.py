@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+from argparse import RawTextHelpFormatter
 from app import app
 
 """
@@ -45,11 +46,18 @@ def twisted():
 
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
     parser.add_argument("-s",
                         "--server",
                         nargs="+",
-                        help="choose between builtin/tornado/twisted as argument",)
+                        help=
+"""
+choose between builtin/tornado/twisted as argument, ex:
+./run.py
+./run.py -s tornado
+./run.py -s twisted
+"""
+)
     args = parser.parse_args()
     
     if not args.server:  # if no arguments
