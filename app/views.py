@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect
 from flask import send_from_directory, session, flash, url_for
 from flask import make_response  # sitemap
+from flask import abort  # 404 page
 from app import app
 from werkzeug.contrib.atom import AtomFeed  # feed
 from bson.objectid import ObjectId 
@@ -17,6 +18,19 @@ from flask.ext.mail import Message, Mail
 # setup database mongo
 c = pymongo.Connection()
 dbentity = c["entities"]  # db for dbentity.user, dbentity.admin, etc.
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """ handling 404 page
+    ex: if something: abort(404)
+    """
+    return render_template("404.html"), 404
+
+
+@app.errorhandler(500)
+def exception_handler(e):
+    return render_template("500.html"), 500
 
 
 @app.template_filter()
