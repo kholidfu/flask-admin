@@ -1,5 +1,8 @@
 User-agent: Baiduspider
 Disallow: /
 
+User-agent: Baiduspider-image+
+Disallow: /
+
 User-agent: Yandexbot
 Disallow: /
