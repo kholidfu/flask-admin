@@ -450,6 +450,13 @@ def users_profile():
     return render_template("users/profile.html", data=data, form=form)
 
 
+@users.route("/products/new")
+@login_required
+def users_product_new():
+    data = dbusers.user.find_one({"email": session.get("email")})
+    return render_template("/users/products_new.html", data=data)
+
+
 @users.route("/logout")
 def users_logout():
     if "email" not in session:
@@ -457,6 +464,3 @@ def users_logout():
     session.pop("email", None)
     # print "popped out!"  # fixed
     return redirect(url_for("index"))
-
-
-
