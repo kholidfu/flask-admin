@@ -9,3 +9,4 @@ lib_pypy/
 lib-python/
 site-packages/
 pypy*/
+*.json
